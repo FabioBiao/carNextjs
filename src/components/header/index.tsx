@@ -25,7 +25,7 @@ export default function Header() {
   const router = useRouter();
 
   function redirectToLogin() {
-    router.push("/login");
+    router.push("/auth/login");
   }
 
   return (

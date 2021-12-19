@@ -3,6 +3,11 @@ import { useRouter } from "next/router";
 
 export default function Login() {
   const router = useRouter();
+
+  function redirectToRegister() {
+    router.push("/auth/register");
+  }
+
   return (
     <section className="flex flex-col md:flex-row  items-center contentArea">
       <div className="bg-indigo-600 hidden lg:block w-full md:w-1/2 xl:w-2/3 h-full">
@@ -116,6 +121,7 @@ export default function Login() {
             <a
               href="#"
               className="text-blue-500 hover:text-blue-700 font-semibold"
+              onClick={redirectToRegister}
             >
               Create an account
             </a>

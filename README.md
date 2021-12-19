@@ -39,3 +39,14 @@ with
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
  }
  ```
+ npm install -g ts-node for seed to work
+
+
+
+# to run heroku
+ 	Set-ExecutionPolicy RemoteSigned
+	
+	default: Set-ExecutionPolicy Restricted
+
+
+  https://devcenter.heroku.com/articles/heroku-cli#download-and-install

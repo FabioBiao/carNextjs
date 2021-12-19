@@ -3,129 +3,121 @@ import { useRouter } from "next/router";
 
 export default function Register() {
   const router = useRouter();
+
+  function redirectToLogin() {
+    router.push("/auth/login");
+  }
+  
   return (
-    <div className="h-screen md:flex">
-      <div className="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 i justify-around items-center hidden">
-        <div>
-          <h1 className="text-white font-bold text-4xl font-sans">GoFinance</h1>
-          <p className="text-white mt-1">
-            The most popular peer to peer lending at SEA
+    <section className="flex flex-col md:flex-row  items-center contentArea">
+      <div className="bg-indigo-600 hidden lg:block w-full md:w-1/2 xl:w-2/3 h-full">
+        <img
+          src="https://source.unsplash.com/random"
+          alt=""
+          className="w-full h-full object-cover"
+        />
+      </div>
+
+      <div
+        className="bg-white w-full md:max-w-md lg:max-w-full md:mx-auto md:mx-0 md:w-1/2 xl:w-1/3  px-6 lg:px-16 xl:px-12
+            flex items-center justify-center h-full"
+      >
+        <div className="w-full h-100">
+          <h1 className="text-xl md:text-2xl font-bold leading-tight mt-12">
+            Create a new account
+          </h1>
+
+          <form className="mt-6" action="#" method="POST">
+            <div>
+              <label className="block text-gray-700">Email Address</label>
+              <input
+                type="email"
+                name=""
+                id=""
+                placeholder="Enter Email Address"
+                className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
+                autoFocus
+                autoComplete="off"
+                required
+              />
+            </div>
+
+            <div className="mt-4">
+              <label className="block text-gray-700">Password</label>
+              <input
+                type="password"
+                name=""
+                id=""
+                placeholder="Enter Password"
+                className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
+                    focus:bg-white focus:outline-none"
+                required
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="w-full block bg-indigo-500 hover:bg-indigo-400 focus:bg-indigo-400 text-white font-semibold rounded-lg
+                  px-4 py-3 mt-6"
+            >
+              Register
+            </button>
+          </form>
+
+          <hr className="my-6 border-gray-300 w-full" />
+
+          <button
+            type="button"
+            className="w-full block bg-white hover:bg-gray-100 focus:bg-gray-100 text-gray-900 font-semibold rounded-lg px-4 py-3 border border-gray-300"
+          >
+            <div className="flex items-center justify-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlnsXlink="http://www.w3.org/1999/xlink"
+                className="w-6 h-6"
+                viewBox="0 0 48 48"
+              >
+                <defs>
+                  <path
+                    id="a"
+                    d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"
+                  />
+                </defs>
+                <clipPath id="b">
+                  <use xlinkHref="#a" overflow="visible" />
+                </clipPath>
+                <path clipPath="url(#b)" fill="#FBBC05" d="M0 37V11l17 13z" />
+                <path
+                  clipPath="url(#b)"
+                  fill="#EA4335"
+                  d="M0 11l17 13 7-6.1L48 14V0H0z"
+                />
+                <path
+                  clipPath="url(#b)"
+                  fill="#34A853"
+                  d="M0 37l30-23 7.9 1L48 0v48H0z"
+                />
+                <path
+                  clipPath="url(#b)"
+                  fill="#4285F4"
+                  d="M48 48L17 24l-4-3 35-10z"
+                />
+              </svg>
+              <span className="ml-4">Log in with Google</span>
+            </div>
+          </button>
+
+          <p className="mt-8">
+            <a
+              href="#"
+              className="text-blue-500 hover:text-blue-700 font-semibold"
+              onClick={redirectToLogin}
+            >
+             Already have an account?
+            </a>
           </p>
-          <button
-            type="submit"
-            className="block w-28 bg-white text-indigo-800 mt-4 py-2 rounded-2xl font-bold mb-2"
-          >
-            Read More
-          </button>
         </div>
-        <div className="absolute -bottom-32 -left-40 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
-        <div className="absolute -bottom-40 -left-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
-        <div className="absolute -top-40 -right-0 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
-        <div className="absolute -top-20 -right-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
       </div>
-      <div className="flex md:w-1/2 justify-center py-10 items-center bg-white">
-        <form className="bg-white">
-          <h1 className="text-gray-800 font-bold text-2xl mb-1">Hello Again!</h1>
-          <p className="text-sm font-normal text-gray-600 mb-7">Welcome Back</p>
-          <div className="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 text-gray-400"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                clip-rule="evenodd"
-              />
-            </svg>
-            <input
-              className="pl-2 outline-none border-none"
-              type="text"
-              name=""
-              id=""
-              placeholder="Full name"
-            />
-          </div>
-          <div className="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 text-gray-400"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"
-              />
-            </svg>
-            <input
-              className="pl-2 outline-none border-none"
-              type="text"
-              name=""
-              id=""
-              placeholder="Username"
-            />
-          </div>
-          <div className="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 text-gray-400"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
-              />
-            </svg>
-            <input
-              className="pl-2 outline-none border-none"
-              type="text"
-              name=""
-              id=""
-              placeholder="Email Address"
-            />
-          </div>
-          <div className="flex items-center border-2 py-2 px-3 rounded-2xl">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 text-gray-400"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                clip-rule="evenodd"
-              />
-            </svg>
-            <input
-              className="pl-2 outline-none border-none"
-              type="text"
-              name=""
-              id=""
-              placeholder="Password"
-            />
-          </div>
-          <button
-            type="submit"
-            className="block w-full bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2"
-          >
-            Login
-          </button>
-          <span className="text-sm ml-2 hover:text-blue-500 cursor-pointer">
-            Forgot Password ?
-          </span>
-        </form>
-      </div>
-    </div>
+    </section>
   );
 }

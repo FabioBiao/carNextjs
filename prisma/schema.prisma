@@ -24,8 +24,8 @@ model User {
   cars          Car[]
   // accounts      Account[]
   // company       Company
-  company       Company   @relation(fields: [companyId], references: [id])
-  companyId     Int // relation scalar field  (used in the `@relation` attribute above)
+  company       Company?   @relation(fields: [companyId], references: [id])
+  companyId     Int? // relation scalar field  (used in the `@relation` attribute above)
 }
 
 model Company {
@@ -45,11 +45,18 @@ enum Role {
 }
 
 model Car {
-  id      Int   @id @default(autoincrement())
-  user    User  @relation(fields: [userId], references: [id])
-  userId  Int // relation scalar field  (used in the `@relation` attribute above)
-  brand   Brand @relation(fields: [brandId], references: [id])
-  brandId Int // relation scalar field  (used in the `@relation` attribute above)
+  id          Int   @id @default(autoincrement())
+  user        User  @relation(fields: [userId], references: [id])
+  userId      Int // relation scalar field  (used in the `@relation` attribute above)
+  brand       Brand @relation(fields: [brandId], references: [id])
+  published   Boolean @default(true)
+  brandId     Int // relation scalar field  (used in the `@relation` attribute above)
+  fuel        String
+  miles       Int
+  cilindrada  Int
+  pontecy     Int
+  color       String
+  doors       Int
 }
 
 model Brand {
