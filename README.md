@@ -50,3 +50,9 @@ with
 
 
   https://devcenter.heroku.com/articles/heroku-cli#download-and-install
+
+
+
+  heroku logs --tail --app globalstand
+
+  
