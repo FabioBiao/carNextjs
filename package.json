@@ -3,8 +3,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "startH": "next start -p $PORT"
+    "start": "next start -p $PORT",
+    "startNomral": "next start"
   },
   "dependencies": {
     "@prisma/client": "^3.6.0",
