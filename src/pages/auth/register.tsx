@@ -1,13 +1,39 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { useForm, useFormState } from "react-hook-form";
+import { useSession, signIn, signOut } from "next-auth/react";
+import axios from "axios";
 
 export default function Register() {
   const router = useRouter();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   function redirectToLogin() {
     router.push("/auth/login");
   }
-  
+  const onSubmit = (data) => {
+    console.log(data);
+    const email = data.email;
+    const password = data.password;
+
+    axios
+      .post("http://localhost:3000/api/user/register", {
+        email: email,
+        password: password,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+  console.log(errors);
+
   return (
     <section className="flex flex-col md:flex-row  items-center contentArea">
       <div className="bg-indigo-600 hidden lg:block w-full md:w-1/2 xl:w-2/3 h-full">
@@ -27,33 +53,61 @@ export default function Register() {
             Create a new account
           </h1>
 
-          <form className="mt-6" action="#" method="POST">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="mt-6"
+            action="#"
+            method="POST"
+          >
             <div>
               <label className="block text-gray-700">Email Address</label>
               <input
                 type="email"
                 name=""
-                id=""
+                id="email"
                 placeholder="Enter Email Address"
                 className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
                 autoFocus
                 autoComplete="off"
-                required
+                {...register("email", {
+                  required: "Please insert an Email",
+                  pattern: /^\S+@\S+$/i,
+                })}
               />
             </div>
+            {errors.email && (
+              <p className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                {errors.email.message}
+              </p>
+            )}
+            {errors.email && errors.email.type === "pattern" && (
+              <p className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                Please insert a valid email
+              </p>
+            )}
 
             <div className="mt-4">
               <label className="block text-gray-700">Password</label>
               <input
                 type="password"
                 name=""
-                id=""
+                id="password"
                 placeholder="Enter Password"
                 className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
                     focus:bg-white focus:outline-none"
                 required
+                {...register("password", {
+                  required: "Please insert Password",
+                  min: 5,
+                  max: 20,
+                })}
               />
             </div>
+            {errors.password && errors.password.type === "required" && (
+              <p className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                Password is required
+              </p>
+            )}
 
             <button
               type="submit"
@@ -113,7 +167,7 @@ export default function Register() {
               className="text-blue-500 hover:text-blue-700 font-semibold"
               onClick={redirectToLogin}
             >
-             Already have an account?
+              Already have an account?
             </a>
           </p>
         </div>

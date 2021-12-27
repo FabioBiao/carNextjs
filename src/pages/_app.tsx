@@ -1,16 +1,19 @@
 import "../../styles/globals.scss";
 import Header from "../components/header";
+import { SessionProvider } from "next-auth/react";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
     <>
-      <div className="mainContainer">
-        {/* h-screen */}
-        <Header />
-        <div className="flex-1">
-          <Component {...pageProps} />
+      <SessionProvider session={session}>
+        <div className="mainContainer">
+          {/* h-screen */}
+          <Header />
+          <div className="flex-1">
+            <Component {...pageProps} />
+          </div>
         </div>
-      </div>
+      </SessionProvider>
     </>
   );
 }

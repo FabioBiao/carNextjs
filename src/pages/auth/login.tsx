@@ -1,8 +1,31 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { useForm, useFormState } from "react-hook-form";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function Login() {
   const router = useRouter();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  // const { data: session } = useSession();
+  const onSubmit = (data) => {
+    console.log(data);
+    const email = data.email;
+    const password = data.password;
+
+    signIn("credentials", {
+      email,
+      password,
+      // The page where you want to redirect to after a
+      // successful login
+      callbackUrl: `${window.location.origin}/dashboard`,
+    });
+  };
+  console.log(errors);
 
   function redirectToRegister() {
     router.push("/auth/register");
@@ -26,35 +49,62 @@ export default function Login() {
           <h1 className="text-xl md:text-2xl font-bold leading-tight mt-12">
             Log in to your account
           </h1>
-
-          <form className="mt-6" action="#" method="POST">
+          <form onSubmit={handleSubmit(onSubmit)} className="mt-6">
             <div>
               <label className="block text-gray-700">Email Address</label>
               <input
-                type="email"
+                type="text"
                 name=""
-                id=""
-                placeholder="Enter Email Address"
+                id="email"
                 className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
                 autoFocus
                 autoComplete="off"
-                required
+                placeholder="Enter Email Address"
+                {...register("email", {
+                  required: "Please insert an Email",
+                  pattern: /^\S+@\S+$/i,
+                })}
               />
-            </div>
 
+              {errors.email && (
+                <p className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                  {errors.email.message}
+                </p>
+              )}
+              {errors.email && errors.email.type === "pattern" && (
+                <p className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                  Please insert a valid email
+                </p>
+              )}
+            </div>
             <div className="mt-4">
               <label className="block text-gray-700">Password</label>
               <input
                 type="password"
                 name=""
-                id=""
+                id="password"
                 placeholder="Enter Password"
                 className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
                     focus:bg-white focus:outline-none"
-                required
+                {...register("password", {
+                  required: "Please insert Password",
+                  min: 5,
+                  max: 20,
+                })}
               />
-            </div>
-
+            </div>{" "}
+            {errors.password && errors.password.type === "required" && (
+              <p className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                Password is required
+              </p>
+            )}
+            {errors.password &&
+              (errors.password.type === "max" ||
+                errors.password.type === "min") && (
+                <p className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                  Password must be between 5 and 20 caracters
+                </p>
+              )}
             <div className="text-right mt-2">
               <a
                 href="#"
@@ -63,7 +113,6 @@ export default function Login() {
                 Forgot Password?
               </a>
             </div>
-
             <button
               type="submit"
               className="w-full block bg-indigo-500 hover:bg-indigo-400 focus:bg-indigo-400 text-white font-semibold rounded-lg

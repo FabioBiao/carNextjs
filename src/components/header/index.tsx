@@ -1,7 +1,10 @@
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 // import { FiHome, FiMessageSquare, FiFilter } from "react-icons/fi";
 import styles from "./header.module.scss";
+
+import useLoggedUser from '../../utils/loggedUser';
 
 export const routes = [
   {
@@ -23,6 +26,7 @@ export const routes = [
 
 export default function Header() {
   const router = useRouter();
+  const { user, setUser } = useLoggedUser();
 
   function redirectToLogin() {
     router.push("/auth/login");
@@ -55,6 +59,16 @@ export default function Header() {
           <a className="mr-5 hover:text-gray-900">Third Link</a>
           <a className="mr-5 hover:text-gray-900">Fourth Link</a> */}
         </nav>
+
+        {user  && (
+        <button
+        className="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
+        onClick={redirectToLogin}
+      >
+        Logout
+      </button>
+        )}
+
         <button
           className="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
           onClick={redirectToLogin}
