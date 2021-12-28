@@ -1,12 +1,18 @@
 import { NextApiResponse, NextApiRequest } from 'next';
 import {register as registerLib} from '../../../lib/controllers/users';
 
+interface User {
+    user: any;
+    message: string;
+    code: number;
+  }
+
 export default async function register(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
         try {
             console.log('register Post');
             console.log(req.body);
-            const newUser = await registerLib(req.body);
+            const newUser:User = await registerLib(req.body) as User;
             
             console.log('result from lib');
             console.log(newUser);

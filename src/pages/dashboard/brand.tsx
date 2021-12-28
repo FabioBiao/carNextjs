@@ -1,9 +1,10 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
+import { useState } from "react";
 import DashboardLayout from "../../components/dashboardLayout";
 
-export default function Dashboard() {
+export default function Brand() {
   const router = useRouter();
   const { status, data } = useSession({
     required: true,
@@ -21,7 +22,7 @@ export default function Dashboard() {
   }
   return (
    <DashboardLayout>
-     <div>Index here</div>
+     <div>Brand page here</div>
    </DashboardLayout>
   );
 }

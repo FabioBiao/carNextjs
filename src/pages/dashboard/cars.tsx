@@ -3,8 +3,9 @@ import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import DashboardLayout from "../../components/dashboardLayout";
 
-export default function Dashboard() {
+export default function Cars() {
   const router = useRouter();
+
   const { status, data } = useSession({
     required: true,
     onUnauthenticated() {
@@ -21,7 +22,7 @@ export default function Dashboard() {
   }
   return (
    <DashboardLayout>
-     <div>Index here</div>
+     <div>Cars page here</div>
    </DashboardLayout>
   );
 }
