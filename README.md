@@ -44,6 +44,7 @@ with
 
 
 # to run heroku
+On powershell
  	Set-ExecutionPolicy RemoteSigned
 	
 	default: Set-ExecutionPolicy Restricted
