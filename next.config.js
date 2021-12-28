@@ -3,7 +3,6 @@
  */
 const nextConfig = {
   /* config options here */
-  presets: ["next/babel"],
 };
 
 module.exports = nextConfig;
