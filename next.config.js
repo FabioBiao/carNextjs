@@ -1,3 +1,9 @@
-{
-"presets": ["next/babel"]
-}
+/**
+ * @type {import('next').NextConfig}
+ */
+const nextConfig = {
+  /* config options here */
+  presets: ["next/babel"],
+};
+
+module.exports = nextConfig;
