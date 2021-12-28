@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import styles from "./header.module.scss";
 
 import { signOut } from "next-auth/react";
-import useLoggedUser from "../../utils/loggedUser";
+import useLoggedUser from "../../lib/utils/loggedUser";
 
 export const routes = [
   {

@@ -23,7 +23,7 @@ export default async function register(req: NextApiRequest, res: NextApiResponse
             if(newUser.code == 400){
                 return res.status(400).json({ message: newUser.message });
             }
-            res.status(200).json(newUser);
+            return res.status(200).json(newUser);
         } catch (error) {
             console.error(error);
             return res

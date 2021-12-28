@@ -1,9 +1,9 @@
 import prisma from "../prisma/prisma";
 import { CarModel, MakeSelect, ModelSelect } from "../models/Car";
 import { ParsedUrlQuery } from "querystring";
-import { getValueString, getValueNumber } from "../../utils";
+import { getValueString, getValueNumber } from "../utils";
 
-const { createJWT, isTokenValid } = require("../../utils/jwt");
+const { createJWT, isTokenValid } = require("../../lib/utils/jwt");
 // import jwt from "@jsonwebtoken";
 // import bcrypt from "@bcryptjs";
 

@@ -1,7 +1,7 @@
 import db from "../prisma/prisma";
 import { CarModel, MakeSelect, ModelSelect } from "../models/Car";
 import { ParsedUrlQuery } from "querystring";
-import { getValueString, getValueNumber } from "../../utils";
+import { getValueString, getValueNumber } from "../utils";
 
 export async function getMakes() {
 //   return await db<MakeSelect[]>("cars")

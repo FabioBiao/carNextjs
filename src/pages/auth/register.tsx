@@ -21,15 +21,18 @@ export default function Register() {
     const password = data.password;
 
     axios
-      .post("http://localhost:3000/api/user/register", {
+      .post("/api/user/register", {
         email: email,
         password: password,
       })
       .then(function (response) {
         console.log(response);
+        console.log(response["data"]);
       })
-      .catch(function (error) {
-        console.log(error);
+      .catch((err) => {
+        console.log(err);
+        console.log(err.response);
+        console.log(err.response.data);
       });
   };
   console.log(errors);

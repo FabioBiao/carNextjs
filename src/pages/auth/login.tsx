@@ -23,6 +23,7 @@ export default function Login() {
       // The page where you want to redirect to after a
       // successful login
       callbackUrl: `${window.location.origin}/dashboard`,
+      // callbackUrl: 'https://globalstand.herokuapp.com/dashboard',
     });
   };
   console.log(errors);

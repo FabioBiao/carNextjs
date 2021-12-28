@@ -42,9 +42,9 @@ const options = {
   NEXTAUTH_URL: process.env.BASE_URL,
   secret: process.env.JWT_SECRET,
   pages: {
-    signIn: "/auth/signin",
-    signOut: "/auth/signout",
+    signIn: process.env.BASE_URL + "/auth/signin",
+    signOut: process.env.BASE_URL +  "/auth/signout",
     error: process.env.BASE_URL + "auth/signin", // Error code passed in query string as ?error=
-    verifyRequest: "/auth/verify-request", // (used for check email message)
+    verifyRequest: process.env.BASE_URL + "/auth/verify-request", // (used for check email message)
   },
 };

@@ -55,4 +55,8 @@ with
 
   heroku logs --tail --app globalstand
 
-  
+# react notifications
+https://github.com/fkhadra/react-toastify
+
+
+
