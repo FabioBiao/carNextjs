@@ -1,16 +1,16 @@
 const jwt = require("jsonwebtoken");
 
-const createJWT = ({ payload }) => {
+export const createJWT = ({ payload }) => {
     const token = jwt.sign(payload, process.env.JWT_SECRET);
     return token;
 };
 
-const isTokenValid = (token) => {
+export const isTokenValid = (token) => {
     const user = jwt.verify(token, process.env.JWT_SECRET);
     return user;
 };
 
-const attachCookiesToResponse = ({ res, user, refreshToken }) => {
+export const attachCookiesToResponse = ({ res, user, refreshToken }) => {
     const accessTokenJWT = createJWT({ payload: { user } });
     const refreshTokenJWT = createJWT({ payload: { user, refreshToken } });
 
@@ -44,8 +44,8 @@ const attachCookiesToResponse = ({ res, user, refreshToken }) => {
 //   });
 // };
 
-module.exports = {
-    createJWT,
-    isTokenValid,
-    attachCookiesToResponse,
-};
+// module.exports = {
+//     createJWT,
+//     isTokenValid,
+//     attachCookiesToResponse,
+// };
