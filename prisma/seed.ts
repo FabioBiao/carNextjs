@@ -11,13 +11,13 @@ const roleData: Prisma.RoleCreateInput[] = [
 const userData: Prisma.UserCreateInput[] = [
   {
     email: "admin@hotmail.com",
-    password: "admin",
+    password: "$2a$10$BRrQUbplVYaqQjVICrQ7/.1zKTtlZBTcEDHoyMVfslfJTq0mpR5KG", //admin
     // role: 'Admin',
     role: { connect: { id: 1 }},
     company: {},
   },  {
     email: "teste@hotmail.com",
-    password: "teste",
+    password: "$2a$10$2bvZ.R3QNUL2lzlejICVzOtNgh1iFSXbcFaq3cfYsjrMchuDg7lkG",  // teste  
     // role: 'Admin',
     role: { connect: { id: 2 }},
     company: {},

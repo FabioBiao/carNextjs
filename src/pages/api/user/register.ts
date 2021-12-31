@@ -1,5 +1,5 @@
 import { NextApiResponse, NextApiRequest } from 'next';
-import {register as registerLib} from '../../../lib/controllers/users';
+import {register as registerLib} from '../../../lib/controllers/usersController';
 
 interface User {
     user: any;

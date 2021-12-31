@@ -1,4 +1,5 @@
-
+# nextjs errors
+https://next-auth.js.org/v3/configuration/pages#sign-in-page
 
 
 # Prisma
@@ -41,7 +42,9 @@ with
  ```
  npm install -g ts-node for seed to work
 
-
+# on heroky 
+heroku run npx prisma migrate dev --name init
+ heroku run npx prisma db seed
 
 # to run heroku
 On powershell

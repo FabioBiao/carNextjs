@@ -28,6 +28,7 @@ export default function Register() {
       .then(function (response) {
         console.log(response);
         console.log(response["data"]);
+        redirectToLogin();
       })
       .catch((err) => {
         console.log(err);

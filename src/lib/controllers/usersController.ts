@@ -25,10 +25,10 @@ export async function login({ email, password }) {
   });
   console.log("user found result:");
   console.log(user);
-  console.log(bcrypt.compareSync(password, user.password));
 
-  // validate && compare password
+  // validate if found user && compare password
   if (!(user && bcrypt.compareSync(password, user.password))) {
+    console.log(bcrypt.compareSync(password, user.password));
     return { user: null, code: 101, message: "Invalid Credentials" };
   }
 

@@ -1,5 +1,5 @@
 import { NextApiResponse, NextApiRequest } from 'next';
-import { getCars } from '../../lib/controllers/cars';
+import { getCars } from '../../lib/controllers/carsController';
 
 // GET /api/cars/
 export default async function cars(req: NextApiRequest, res: NextApiResponse) {

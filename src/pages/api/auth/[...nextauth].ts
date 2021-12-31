@@ -5,7 +5,7 @@ import Adapters from "next-auth/adapters";
 import prisma from "../../../lib/prisma/prisma";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { login } from "../../../lib/controllers/users";
+import { login } from "../../../lib/controllers/usersController";
 
 const authHandler: NextApiHandler = (req, res) => NextAuth(req, res, options);
 export default authHandler;
@@ -33,7 +33,7 @@ const options = {
           return user;
         } else {
           // If you return null or false then the credentials will be rejected
-          return null;
+          throw new Error(message);
         }
       },
     }),
@@ -42,9 +42,9 @@ const options = {
   NEXTAUTH_URL: process.env.BASE_URL,
   secret: process.env.JWT_SECRET,
   pages: {
-    signIn: process.env.BASE_URL + "/auth/signin",
+    signIn: process.env.BASE_URL + "/auth/login",
     signOut: process.env.BASE_URL +  "/auth/signout",
-    error: process.env.BASE_URL + "auth/signin", // Error code passed in query string as ?error=
+    error: process.env.BASE_URL + "/auth/login", // Error code passed in query string as ?error=
     verifyRequest: process.env.BASE_URL + "/auth/verify-request", // (used for check email message)
   },
 };

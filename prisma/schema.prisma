@@ -67,15 +67,15 @@ model Car {
 }
 
 model Brand {
-  id    Int     @id @default(autoincrement())
-  name  String?
-  posts Model[]
+  id    Int       @id @default(autoincrement())
+  name  String   @unique
+  models Model[]
   Car   Car[]
 }
 
 model Model {
-  id      Int     @id @default(autoincrement())
-  name    String?
-  brand   Brand   @relation(fields: [brandId], references: [id])
+  id      Int       @id @default(autoincrement())
+  name    String    @unique
+  brand   Brand     @relation(fields: [brandId], references: [id])
   brandId Int
 }

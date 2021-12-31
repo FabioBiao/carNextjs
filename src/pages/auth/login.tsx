@@ -3,8 +3,21 @@ import { useRouter } from "next/router";
 import { useForm, useFormState } from "react-hook-form";
 import { useSession, signIn, signOut } from "next-auth/react";
 
-export default function Login() {
+export default function Login(props) {
   const router = useRouter();
+  // console.log(router);
+  console.log(router.query);
+
+  let queryValues = null;
+  if (router.query) {
+    // const queryValues = Object.keys(router.query).map(
+    //   (key) => router.query[key]
+    // );
+    // console.log(queryValues);
+    queryValues = router.query.error;
+  }
+  const loginErrors = queryValues ? queryValues : [];
+
   const {
     register,
     handleSubmit,
@@ -121,6 +134,7 @@ export default function Login() {
             >
               Log In
             </button>
+            {loginErrors && <p className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1"> {loginErrors}</p>}
           </form>
 
           <hr className="my-6 border-gray-300 w-full" />
