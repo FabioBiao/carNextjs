@@ -1,5 +1,5 @@
 import prisma from "../prisma/prisma";
-import { CarModel, MakeSelect, ModelSelect } from "../models/Car";
+import { CarModel, MakeSelect, ModelSelect } from "../models/types";
 import { ParsedUrlQuery } from "querystring";
 import { getValueString, getValueNumber } from "../utils";
 

@@ -19,7 +19,7 @@ export default async function brand(req: NextApiRequest, res: NextApiResponse) {
       return res.status(500).send({
         error: "Internal Server Error. Error retrieving data from database.",
       });
-    }
+    } 
   } else if (req.method === "POST") {
     // CREATE BRAND
     const brand = await createBrand(req.body);

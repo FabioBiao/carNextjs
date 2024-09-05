@@ -20,3 +20,9 @@ export function getValueString(value: string | string[]) {
     const str = getAsString(value);
     return !str || str.toLowerCase() === 'all' ? null : str;
 }
+
+export function getValueBoolean(value: boolean | string[]) {
+    const bool = (typeof value == "boolean");
+    
+    return bool ? bool : false;
+}

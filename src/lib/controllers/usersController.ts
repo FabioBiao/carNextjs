@@ -1,5 +1,5 @@
 import prisma from "../prisma/prisma";
-import { CarModel, MakeSelect, ModelSelect } from "../models/Car";
+import { CarModel, MakeSelect, ModelSelect } from "../models/types";
 import { ParsedUrlQuery } from "querystring";
 import { getValueString, getValueNumber } from "../utils";
 
@@ -27,6 +27,9 @@ export async function login({ email, password }) {
   console.log(user);
 
   // validate if found user && compare password
+  if (!user) {
+    return { user: null, code: 101, message: "Invalid Credentials" };
+  }
   if (!(user && bcrypt.compareSync(password, user.password))) {
     console.log(bcrypt.compareSync(password, user.password));
     return { user: null, code: 101, message: "Invalid Credentials" };
@@ -43,9 +46,8 @@ export async function login({ email, password }) {
 export async function register(query: ParsedUrlQuery) {
   console.log("Inside register");
   console.log(query);
-  const email = getValueString(query.email || '');
-  const password = getValueString(query.password || '');
-
+  const email = getValueString(query.email || "");
+  const password = getValueString(query.password || "");
 
   const emailAlreadyExists = await prisma.user.findUnique({
     where: {
@@ -58,8 +60,8 @@ export async function register(query: ParsedUrlQuery) {
   if (emailAlreadyExists) {
     return { user: null, code: 400, message: "User already exists" };
   }
-  console.log('still here');
-  const hashedPassword = bcrypt.hashSync(password, 10);    
+  console.log("still here");
+  const hashedPassword = bcrypt.hashSync(password, 10);
   console.log(hashedPassword);
   const user = await prisma.user.create({
     data: {
@@ -67,9 +69,9 @@ export async function register(query: ParsedUrlQuery) {
       password: hashedPassword,
     },
   });
-  console.log('user created');
+  console.log("user created");
   console.log(user);
-  
+
   // const token = user.createJWT();
   //const token = await createJWT();
   return user;

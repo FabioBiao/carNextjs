@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import { getBrands } from "../../lib/controllers/brandController";
 import CreateBrandModal from "../../components/modal/createBrand";
 import DeleteBrandModal from "../../components/modal/deleteBrand";
-import { Brand } from "../../lib/models/Car";
+import { Brand } from "../../lib/models/types";
 
 export default function BrandComp() {
   const [brands, setBrands] = useState<[Brand]>(null);

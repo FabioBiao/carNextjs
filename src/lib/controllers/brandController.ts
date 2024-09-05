@@ -1,5 +1,5 @@
 import prisma from "../prisma/prisma";
-import { CarModel, MakeSelect, ModelSelect } from "../models/Car";
+import { CarModel, MakeSelect, ModelSelect } from "../models/types";
 import { ParsedUrlQuery } from "querystring";
 import { getValueString, getValueNumber } from "../utils";
 
@@ -26,7 +26,7 @@ export async function createBrand(brand) {
 
   console.log(newBrand);
 
-  return { brand: newBrand, code: 400, message: "Brand already exists" };
+  return { brand: newBrand, code: 200, message: "Brand created" };
 }
 
 export async function getBrands() {

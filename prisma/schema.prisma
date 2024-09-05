@@ -41,41 +41,54 @@ model Company {
 }
 
 model Role {
-  id       Int        @id @default(autoincrement())
-  roleName String     @unique
+  id       Int    @id @default(autoincrement())
+  roleName String @unique
   User     User[]
 }
 
-// enum Role {
-//   USER
-//   ADMIN
-// }
-
 model Car {
-  id         Int     @id @default(autoincrement())
-  user       User    @relation(fields: [userId], references: [id])
+  id         Int      @id @default(autoincrement())
+  user       User     @relation(fields: [userId], references: [id])
   userId     Int // relation scalar field  (used in the `@relation` attribute above)
-  brand      Brand   @relation(fields: [brandId], references: [id])
-  published  Boolean @default(true)
+  brand      Brand    @relation(fields: [brandId], references: [id])
   brandId    Int // relation scalar field  (used in the `@relation` attribute above)
-  fuel       String
+  model      Model    @relation(fields: [modelId], references: [id])
+  modelId    Int // relation scalar field  (used in the `@relation` attribute above)
+  published  Boolean  @default(true)
+  year       Int
+  fuel       Fuel     @default(GASOLINA)
   miles      Int
   cilindrada Int
-  pontecy    Int
-  color      String
+  pontency   Int
+  color      String?
   doors      Int
+  details    String
+  price      Decimal
+  photoUrl   String
+  createdAt  DateTime @default(now()) @map(name: "created_at")
+  updatedAt  DateTime @default(now()) @map(name: "updated_at")
+}
+
+enum Fuel {
+  DIESEL
+  ELECTRICO
+  GASOLINA
+  GPL
+  HIBRIDO_DIESEL
+  HIBRIDO_GASOLINA
 }
 
 model Brand {
-  id    Int       @id @default(autoincrement())
-  name  String   @unique
+  id     Int     @id @default(autoincrement())
+  name   String  @unique
   models Model[]
-  Car   Car[]
+  Car    Car[]
 }
 
 model Model {
-  id      Int       @id @default(autoincrement())
-  name    String    @unique
-  brand   Brand     @relation(fields: [brandId], references: [id])
+  id      Int    @id @default(autoincrement())
+  name    String @unique
+  brand   Brand  @relation(fields: [brandId], references: [id])
   brandId Int
+  Car     Car[]
 }

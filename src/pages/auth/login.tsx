@@ -2,6 +2,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useForm, useFormState } from "react-hook-form";
 import { useSession, signIn, signOut } from "next-auth/react";
+import axios from "axios";
 
 export default function Login(props) {
   const router = useRouter();
@@ -38,6 +39,16 @@ export default function Login(props) {
       callbackUrl: `${window.location.origin}/dashboard`,
       // callbackUrl: 'https://globalstand.herokuapp.com/dashboard',
     });
+
+    //   axios
+    //     .post("/api/user/login", { email, password }, { withCredentials: true })
+    //     .then(function (response) {
+    //       console.log(response["data"]);
+    //       // this.brands = response["data"].response;
+    //     })
+    //     .catch((err) => {
+    //       console.log(err.response);
+    //     });
   };
   console.log(errors);
 
@@ -134,7 +145,12 @@ export default function Login(props) {
             >
               Log In
             </button>
-            {loginErrors && <p className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1"> {loginErrors}</p>}
+            {loginErrors && (
+              <p className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                {" "}
+                {loginErrors}
+              </p>
+            )}
           </form>
 
           <hr className="my-6 border-gray-300 w-full" />

@@ -1,10 +1,18 @@
 export interface CarModel {
   id: number;
-  make: string;
+  user: number;
+  brand: string;
   model: string;
+  published:  boolean;
+
   year: number;
   fuelType: string;
-  kilometers: number;
+  miles: number;
+  cilindrada: number;
+  pontecy: number;
+  color: string;
+  doors: number;
+
   details: string;
   price: number;
   photoUrl: string;
@@ -24,6 +32,7 @@ export interface Brand {
   id: number;
   name: string;
 }
+
 export interface Model {
   id: number;
   name: string;

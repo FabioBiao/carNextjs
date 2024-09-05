@@ -47,4 +47,8 @@ const options = {
     error: process.env.BASE_URL + "/auth/login", // Error code passed in query string as ?error=
     verifyRequest: process.env.BASE_URL + "/auth/verify-request", // (used for check email message)
   },
+  session: {
+    maxAge: 30 * 24 * 60 * 60, // 30 days
+    updateAge: 24 * 60 * 60, // 24 hours
+  },
 };
